@@ -1,0 +1,43 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://eureka1:8001/eureka/,http://eureka2:8002/eureka/
+server:
+  port: 8301
+
+# 配置中心
+spring:
+  cloud:
+    gateway:
+      # user 服务
+      routes:
+        - id: user_id
+          uri: lb://user-service
+          order: 11
+          predicates:
+            - Path=/user/**
+      # device-service 服务
+        - id: device_id
+          uri: lb://device-service
+          order: 12
+          predicates:
+            - Path=/device/**
+      # intervention-service 服务
+        - id: intervention-service_id
+          uri: lb://intervention-service
+          order: 13
+          predicates:
+            - Path=/intervention/**
+      discovery:
+        locator:
+          enabled: true
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"

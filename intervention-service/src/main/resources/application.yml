@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8201
+server:
+  port: 1003
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://eureka1:8001/eureka/,http://eureka2:8002/eureka/

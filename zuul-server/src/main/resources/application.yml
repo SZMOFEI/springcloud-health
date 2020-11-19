@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: zuul-server
+server:
+  port: 8101
+
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://eureka1:8001/eureka/,http://eureka2:8002/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+zuul:
+  routes:
+    userService: /user/**
+  prefix: /springhealth
+  sensitiveHeaders: Cookie,Set-Cookie

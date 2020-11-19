@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: user-service
+  profiles:
+    active: default
+      default
+  cloud:
+    config:
+      enabled: true
